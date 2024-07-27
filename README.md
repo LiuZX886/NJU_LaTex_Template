@@ -1,3 +1,11 @@
+# 声明
+
+本项目仅为[NJU_LaTex_Template 南京大学通用作业模板](https://github.com/Sensente/NJU_LaTex_Template/)的改进版本。
+
+欢迎访问我的主页[LiuZX886 Homepage](https://liuzx886.github.io/)。
+
+以下为原作者README.md内容
+
 <h1 align="center">
   <a href="https://github.com/Sensente/NJU_LaTex_Template/">
     <img alt="NJU_LaTex_Template" src="https://github.com/Sensente/NJU_LaTex_Template/blob/main/figure/nju_logo.jpg"  />
@@ -11,7 +19,6 @@
 <p align="center">
   LaTex Template for NJU Report
 </p>
-
 
 ![version](https://img.shields.io/badge/NJU_LaTex_Template-v0.1-blue)
 [![Page Views Count](https://badges.toozhao.com/badges/01H6705M9G5Z65AYCWWHB37ASD/blue.svg)](https://badges.toozhao.com/stats/01H6705M9G5Z65AYCWWHB37ASD "Get your own page views count badge on badges.toozhao.com")
