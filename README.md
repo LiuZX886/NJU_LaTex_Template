@@ -4,7 +4,7 @@
 
 欢迎访问我的主页[LiuZX886 Homepage](https://liuzx886.github.io/)。
 
-以下为原作者README.md内容
+以下为原作者README.md内容：
 
 <h1 align="center">
   <a href="https://github.com/Sensente/NJU_LaTex_Template/">
