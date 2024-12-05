@@ -1,6 +1,5 @@
-\NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NJU_Report}
-\LoadClass[UTF8, oneside, a4paper]{ctexart}
+\LoadClass[oneside, a4paper, 12pt]{ctexart}
 
 %加载宏包
 \RequirePackage{graphicx}  %图片
@@ -8,8 +7,10 @@
 \RequirePackage{titlesec}  %标题
 \RequirePackage{float}     %图片排版
 \RequirePackage{fancyhdr}  %页眉页脚页边距
-%\RequirePackage{hyperref}  %超链接
-\RequirePackage{fontspec}  %字体
+\RequirePackage{hyperref}  %超链接
+\RequirePackage{fontspec}  %字体 
+\RequirePackage{xeCJK}     %中文字体 
+\RequirePackage{unicode-math}
 \RequirePackage{amsmath}   %数学公式
 \RequirePackage{xcolor}    %颜色
 \RequirePackage{geometry}  %页面排版
@@ -19,20 +20,32 @@
 %页面设置
 \geometry{
 	a4paper,
-	left=2.1cm,
-	right=2.1cm,
-	top=2.54cm,
-	bottom=2.54cm,
+	left=1.5cm,
+	right=1.5cm,
+	top=2.0cm,
+	bottom=2.0cm,
 	headsep=1.5cm,
 	footskip=1.75cm,
     headheight = 12.8pt
 }
+
+%字体
+    % 英文字体
+\setmainfont{Times New Roman}[
+    BoldFont={Times New Roman Bold},       % 设置加粗字体
+]
+    %中文字体
+\setCJKmainfont{simsun.ttc}[AutoFakeBold]  % 设置加粗字体
+    %数学字体
+\setmathfont{XITS Math}                    % 设置数学字体
+
 
 %信息
 \newcommand{\Topic}[1]{\def\@Topic{#1}}              %题目
 \newcommand{\Subtopic}[1]{\def\@Subtopic{#1}}        %副标题
 \newcommand{\Name}[1]{\def\@Name{#1}}                %姓名
 \newcommand{\Department}[1]{\def\@Department{#1}}    %院系
+\newcommand{\Grade}[1]{\def\@Grade{#1}}              %年级
 \newcommand{\Major}[1]{\def\@Major{#1}}              %专业
 \newcommand{\ID}[1]{\def\@ID{#1}}                    %学号
 \newcommand{\Date}[1]{\def\@Date{#1}}                %日期
@@ -47,33 +60,33 @@
     \end{figure*}
     \vspace{30pt}
     
-    %副标题
+    % 副标题
     \begin{center}
-		{\Huge \textbf{\@Subtopic}}
+        {\fontsize{30}{35}\selectfont \bfseries \textbf{\@Subtopic}}
     \end{center}
     \vspace{40pt}
-    
-    %主标题
+
+    % 主标题
     \begin{center}    
-        \Huge 
-        \underline{\makebox[360pt]{\textbf{\@Topic}}}\\
+        {\fontsize{24.88}{35}\selectfont \bfseries \underline{\textbf{\@Topic}}}\\
     \end{center}
     \vspace{60pt}
     
     %作者信息
     \begin{center}
-        \Large \bfseries
+        \fontsize{17.28}{20}\selectfont
         \renewcommand\arraystretch{1}
         \begin{tabular}{l@{\extracolsep{0.2em}}c}
-            \cover@Name        &       \underline{\makebox[400pt]{\@Name}}\\
-            \cover@ID          &       \underline{\makebox[400pt]{\@ID}}\\
-            \cover@Department  &       \underline{\makebox[400pt]{\@Department}}\\
+            \textbf{\cover@Name}        &       \underline{\makebox[300pt]{\textbf{\@Name}}}       \\
+            \textbf{\cover@Department}  &       \underline{\makebox[300pt]{\textbf{\@Department}}} \\
+            \textbf{\cover@Grade}       &       \underline{\makebox[300pt]{\textbf{\@Grade}}}      \\
+            \textbf{\cover@ID}          &       \underline{\makebox[300pt]{\textbf{\@ID}}}         \\
         \end{tabular}
     \end{center}
     \vfill
     \begin{center}
 		{
-			\Large 
+			\fontsize{16}{20}\selectfont \bfseries
 			\textbf{\@Date}
 		}
     \end{center}
@@ -82,7 +95,7 @@
 
 %设置目录
 \newcommand{\makecontents}[1]{
-    \Large
+    \fontsize{16}{25}\selectfont
     \tableofcontents
     \thispagestyle{empty}
     \newpage
@@ -90,11 +103,15 @@
 
 %章节格式
     %section格式和缩进设置
-\titleformat{\section}{\huge \bfseries}{\arabic{section} .}{1em}{}
+\titleformat{\section}{\fontsize{18}{20}\bfseries}{\arabic{section}.}{0.2em}{}
 \titlespacing{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
     %subsection格式和缩进设置
-\titleformat{\subsection}{\Large \bfseries}{\arabic{section} .}{1em}{}
-\titlespacing{\subsection}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\titleformat{\subsection}{\fontsize{16}{18}\bfseries}{\arabic{section}.\arabic{subsection}}{0.2em}{}
+\titlespacing{\subsection}{.3em}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+    %subsubsection格式和缩进设置
+\titleformat{\subsubsection}{\fontsize{14}{16}\bfseries}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}{0.2em}{}
+\titlespacing{\subsubsection}{.6em}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+
 
 %页码格式
 \pagestyle{plain}
@@ -121,10 +138,11 @@
 }
 
 %\AtEndOfClass{\input{myTemplat.cfg}}
-\def \cover@Name{姓名：}                %姓名
-\def \cover@Department{院系：}          %院系
-\def \cover@Major{专业：}               %专业
-\def \cover@ID{学号：}                  %学号
-\def \cover@Date{日期：}                %日期
+\def \cover@Name{Name: }                %姓名
+\def \cover@Department{School: }        %院系
+\def \cover@Major{Major: }              %专业
+\def \cover@ID{Student ID: }            %学号
+\def \cover@Grade{Grade: }              %年级
+\def \cover@Date{Date: }                %日期
 
 \endinput
